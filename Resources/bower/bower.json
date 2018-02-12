@@ -27,7 +27,7 @@
         "pickadate"                 : "*",
         "holderjs"                  : "*",
         "bootflatv2"                : "*",
-        "bootbox"                   : "*",
+        "bootbox"                   : "git://github.com/Sscorpion9991/bootbox.git#master",
         "fontawesome"               : "*",
         "ionicons"                  : "*",
         "fullcalendar"              : "*",
