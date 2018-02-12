@@ -28,7 +28,7 @@
         "holderjs"                  : "*",
         "bootflatv2"                : "*",
         "bootbox"                   : "git://github.com/Sscorpion9991/bootbox.git#master",
-        "fontawesome"               : "*",
+        "fontawesome"               : "^4.0.0",
         "ionicons"                  : "*",
         "fullcalendar"              : "*",
         "adminlte"                  : "~2.3"
