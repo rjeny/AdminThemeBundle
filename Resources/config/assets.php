@@ -7,138 +7,150 @@
 
 return call_user_func(
     function () {
-        $jsAssets   = '@AvanzuAdminThemeBundle/Resources/';
-        $lteJSBase  = $jsAssets.'public/vendor/adminlte/';
-        $cssAssets  = 'bundles/avanzuadmintheme/';
-        $lteCssBase = $cssAssets.'vendor/adminlte/';
+        $jsAssets = '@AvanzuAdminThemeBundle/Resources/';
+        $lteJSBase = $jsAssets . 'bower/bower_components/adminlte/';
+        $cssAssets = 'bundles/avanzuadmintheme/';
 
-        return array(
-            'modernizr_js' => array(
-                'inputs' => array(
-                    $jsAssets.'public/vendor/modernizr/modernizr.js',
-                )
-            ),
-            'common_js'              => array(
-                'inputs' => array(
-                    $jsAssets.'public/vendor/jquery/dist/jquery.js',
-                    $jsAssets.'public/vendor/jquery-ui/jquery-ui.js',
-                    $jsAssets.'public/vendor/underscore/underscore.js',
-                    $jsAssets.'public/vendor/backbone/backbone.js',
-                    $jsAssets.'public/vendor/marionette/lib/backbone.marionette.js',
-                    $jsAssets.'public/vendor/bootstrap/dist/js/bootstrap.min.js',
-                    $jsAssets.'public/vendor/bootbox/bootbox.js',
-                    $jsAssets.'public/js/dialogs.js',
-                    $jsAssets.'public/js/namespace.js',
-                ),
-            ),
-            'tools_js'               => array(
-                'inputs' => array(
+        return [
+            'modernizr_js' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/modernizr/modernizr.js',
+                ],
+            ],
+            'common_js' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/jquery/dist/jquery.js',
+                    $jsAssets . 'bower/bower_components/jquery-ui/jquery-ui.js',
+                    $jsAssets . 'bower/bower_components/underscore/underscore.js',
+                    $jsAssets . 'bower/bower_components/bootstrap/dist/js/bootstrap.min.js',
+                    $jsAssets . 'bower/bower_components/bootbox/bootbox.js',
+                ],
+            ],
+            'tools_js' => [
+                'inputs' => [
                     '@common_js',
-                    $jsAssets.'public/vendor/momentjs/moment.js',
-                    $jsAssets.'public/vendor/holderjs/holder.js',
-                    $jsAssets.'public/vendor/spinjs/spin.js',
-                ),
-            ),
-            'admin_lte_js'           => array(
-                'inputs' => array(
-                    $lteJSBase.'plugins/bootstrap-slider/bootstrap-slider.js',
-                    $lteJSBase.'plugins/datatables/jquery.dataTables.js',
-                    $lteJSBase.'plugins/datatables/dataTables.bootstrap.js',
-                    $lteJSBase.'plugins/slimScroll/jquery.slimscroll.js',
-                    $jsAssets.'public/js/adminLTE.js',
-                )
-            ),
-            'admin_lte_css'          => array(
-                'inputs' => array(
-
-                    $lteCssBase.'bootstrap/css/bootstrap.min.css',
-                    $lteCssBase.'plugins/bootstrap-slider/slider.css',
-                    $lteCssBase.'plugins/datatables/dataTables.bootstrap.css',
-                    $cssAssets.'vendor/fontawesome/css/font-awesome.min.css',
-                    $cssAssets.'vendor/ionicons/css/ionicons.min.css',
-                    $lteCssBase.'dist/css/AdminLTE.css',
-                    $lteCssBase.'dist/css/skins/_all-skins.css',
-                )
-            ),
-            'admin_lte_forms_js'     => array(
-                'inputs' => array(
-                    $lteJSBase.'plugins/colorpicker/bootstrap-colorpicker.js',
-                    $lteJSBase.'plugins/daterangepicker/daterangepicker.js',
-                    $lteJSBase.'plugins/timepicker/bootstrap-timepicker.js',
-                    $lteJSBase.'plugins/input-mask/jquery.inputmask.js',
-                    $lteJSBase.'plugins/iCheck/icheck.js'
+                    $jsAssets . 'bower/bower_components/momentjs/moment.js',
+                    $jsAssets . 'bower/bower_components/holderjs/holder.js',
+                    $jsAssets . 'bower/bower_components/spinjs/spin.js',
+                ],
+            ],
+            'admin_lte_js' => [
+                'inputs' => [
+                    $lteJSBase . 'plugins/bootstrap-slider/bootstrap-slider.js',
+                    $lteJSBase . 'plugins/datatables/jquery.dataTables.js',
+                    $lteJSBase . 'plugins/datatables/dataTables.bootstrap.js',
+                    $lteJSBase . 'plugins/slimScroll/jquery.slimscroll.js',
+                    $jsAssets . 'bower/bower_components/adminlte/dist/js/app.min.js',
+                ],
+            ],
+            'admin_lte_css' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/adminlte/bootstrap/css/bootstrap.min.css',
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/bootstrap-slider/slider.css',
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/datatables/dataTables.bootstrap.css',
+                    $jsAssets . 'bower/bower_components/fontawesome/css/font-awesome.min.css',
+                    $jsAssets . 'bower/bower_components/ionicons/css/ionicons.min.css',
+                    $jsAssets . 'bower/bower_components/adminlte/dist/css/AdminLTE.min.css',
+                    $jsAssets . 'bower/bower_components/adminlte/dist/css/skins/_all-skins.min.css',
+                ],
+            ],
+            'admin_lte_fonts' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/adminlte/bootstrap/fonts/glyphicons-halflings-regular.eot',
+                    $jsAssets . 'bower/bower_components/adminlte/bootstrap/fonts/glyphicons-halflings-regular.svg',
+                    $jsAssets . 'bower/bower_components/adminlte/bootstrap/fonts/glyphicons-halflings-regular.ttf',
+                    $jsAssets . 'bower/bower_components/adminlte/bootstrap/fonts/glyphicons-halflings-regular.woff',
+                    $jsAssets . 'bower/bower_components/adminlte/bootstrap/fonts/glyphicons-halflings-regular.woff2',
+                    $jsAssets . 'bower/bower_components/fontawesome/fonts/FontAwesome.otf',
+                    $jsAssets . 'bower/bower_components/fontawesome/fonts/fontawesome-webfont.eot',
+                    $jsAssets . 'bower/bower_components/fontawesome/fonts/fontawesome-webfont.svg',
+                    $jsAssets . 'bower/bower_components/fontawesome/fonts/fontawesome-webfont.ttf',
+                    $jsAssets . 'bower/bower_components/fontawesome/fonts/fontawesome-webfont.woff',
+                    $jsAssets . 'bower/bower_components/fontawesome/fonts/fontawesome-webfont.woff2',
+                    $jsAssets . 'bower/bower_components/ionicons/fonts/ionicons.eot',
+                    $jsAssets . 'bower/bower_components/ionicons/fonts/ionicons.svg',
+                    $jsAssets . 'bower/bower_components/ionicons/fonts/ionicons.ttf',
+                    $jsAssets . 'bower/bower_components/ionicons/fonts/ionicons.woff',
+                ],
+            ],
+            'admin_lte_forms_js' => [
+                'inputs' => [
+                    $lteJSBase . 'plugins/colorpicker/bootstrap-colorpicker.js',
+                    $lteJSBase . 'plugins/daterangepicker/daterangepicker.js',
+                    $lteJSBase . 'plugins/timepicker/bootstrap-timepicker.js',
+                    $lteJSBase . 'plugins/input-mask/jquery.inputmask.js',
+                    $lteJSBase . 'plugins/iCheck/icheck.js',
                     //   $lteJs.'plugins/input-mask/*',
-                )
-            ),
-            'admin_lte_forms_css'    => array(
-                'inputs' => array(
-                    $lteCssBase.'plugins/colorpicker/bootstrap-colorpicker.css',
-                    $lteCssBase.'plugins/daterangepicker/daterangepicker.css',
-                    $lteCssBase.'plugins/timepicker/bootstrap-timepicker.css',
-                    $lteCssBase.'plugins/iCheck/all.css',
-                    $lteCssBase.'plugins/iCheck/square/_all.css',
-                )
-            ),
-            'admin_lte_wysiwyg'      => array(
-                'inputs' => array(
-                    $lteJSBase.'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
-                )
-            ),
-            'admin_lte_wysiwyg_css'  => array(
-                'inputs' => array(
-                    $lteCssBase.'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
-                )
-            ),
-            'admin_lte_morris'       => array(
-                'inputs' => array(
-                    $lteJSBase.'plugins/morris/morris.js',
-                )
-            ),
-            'admin_lte_morris_css'   => array(
-                'inputs' => array(
-                    $lteCssBase.'plugins/morris/morris.css',
-                )
-            ),
-            'admin_lte_flot'         => array(
-                'inputs' => array(
-                    $lteJSBase.'plugins/flot/*',
-                )
-            ),
-            'admin_lte_calendar'     => array(
-                'inputs' => array(
-                    $jsAssets.'public/vendor/fullcalendar/dist/fullcalendar.min.js',
-                )
-            ),
-            'admin_lte_calendar_css' => array(
-                'inputs' => array(
-                    $cssAssets.'vendor/fullcalendar/dist/fullcalendar.css',
-                )
-            ),
-            'avatar_img'             => array(
-                'inputs' => array(
-                    '@AvanzuAdminThemeBundle/Resources/public/img/avatar.png'
-                )
-            ),
-            'admin_lte_all'          => array(
-                'inputs' => array(
+                ],
+            ],
+            'admin_lte_forms_css' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/colorpicker/bootstrap-colorpicker.css',
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/daterangepicker/daterangepicker.css',
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/timepicker/bootstrap-timepicker.css',
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/iCheck/all.css',
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/iCheck/square/_all.css',
+                ],
+            ],
+            'admin_lte_wysiwyg' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
+                ],
+            ],
+            'admin_lte_wysiwyg_css' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
+                ],
+            ],
+            'admin_lte_morris' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/morris/morris.js',
+                ],
+            ],
+            'admin_lte_morris_css' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/morris/morris.css',
+                ],
+            ],
+            'admin_lte_flot' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/adminlte/plugins/flot/*',
+                ],
+            ],
+            'admin_lte_calendar' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/fullcalendar/dist/fullcalendar.min.js',
+                ],
+            ],
+            'admin_lte_calendar_css' => [
+                'inputs' => [
+                    $jsAssets . 'bower/bower_components/fullcalendar/dist/fullcalendar.css',
+                ],
+            ],
+            'avatar_img' => [
+                'inputs' => [
+                    '@AvanzuAdminThemeBundle/Resources/public/img/avatar.png',
+                ],
+            ],
+            'admin_lte_all' => [
+                'inputs' => [
                     '@tools_js',
                     '@admin_lte_forms_js',
                     '@admin_lte_wysiwyg',
                     '@admin_lte_morris',
                     '@admin_lte_calendar',
                     '@admin_lte_js',
-                )
-            ),
-            'admin_lte_all_css'      => array(
-                'inputs' => array(
+                ],
+            ],
+            'admin_lte_all_css' => [
+                'inputs' => [
                     '@admin_lte_css',
                     '@admin_lte_forms_css',
                     '@admin_lte_wysiwyg_css',
                     '@admin_lte_calendar_css',
                     '@admin_lte_morris_css',
-                )
-            )
-
-        );
+                ],
+            ],
+        ];
     }
 );
