@@ -1,5 +1,7 @@
 ## The Sidebar Navigation Component
 
+__*Notice* If you would rather use the KnpMenuBundle instead, please refer to the [integration guide][1].__
+
 Although the `MenuItemInteface` as well as the `MenuItemModel` are designed to support an unlimited depth, the sidebar menu is currently limited to two levels.
 
 ### Data Model
@@ -58,7 +60,7 @@ class MyMenuItemListListener {
 	protected function getMenu(Request $request) {
 		// Build your menu here by constructing a MenuItemModel array
 		$menuItems = array(
-            $blog = new MenuItemModel('ItemId', 'ItemDisplayName', 'item_symfony_route', array(/* options */), 'iconclasses fa fa-plane');
+            $blog = new MenuItemModel('ItemId', 'ItemDisplayName', 'item_symfony_route', array(/* options */), 'iconclasses fa fa-plane')
         );
 
         // Add some children
@@ -115,10 +117,10 @@ XML:
 YAML: 
 
 ```yaml
-	parameters:
-		# ...
+    parameters:
+        # ...
         my_admin_bundle.menu_listener.class: MyAdminBundle\EventListener\MyMenuItemListListener
-    
+
     services:
         # ...
         my_admin_bundle.menu_listener:
@@ -126,3 +128,5 @@ YAML:
             tags:
                 - { name: kernel.event_listener, event:theme.sidebar_setup_menu, method:onSetupMenu }
 ```
+
+[1]: knp_menu.md

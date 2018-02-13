@@ -7,14 +7,35 @@
 
 namespace Avanzu\AdminThemeBundle\Event;
 
-
 use Avanzu\AdminThemeBundle\Model\TaskInterface;
 
-class TaskListEvent extends ThemeEvent {
+class TaskListEvent extends ThemeEvent
+{
+    protected $tasks = [];
 
-    protected $tasks = array();
+    protected $max;
 
     protected $total = 0;
+
+    /**
+     * TaskListEvent constructor.
+     *
+     * @param integer $max Maximun number of notifications displayed in panel
+     */
+    public function __construct($max = NULL)
+    {
+        $this->max = $max;
+    }
+
+    /**
+     * Get the maximun number of notifications displayed in panel
+     * 
+     * @return integer
+     */
+    public function getMax()
+    {
+        return $this->max;
+    }
 
     /**
      * @return array
@@ -24,14 +45,14 @@ class TaskListEvent extends ThemeEvent {
         return $this->tasks;
     }
 
-
     /**
      * @param TaskInterface $taskInterface
      *
      * @return $this
      */
-    public function addTask(TaskInterface $taskInterface){
-        $this->tasks[]  = $taskInterface;
+    public function addTask(TaskInterface $taskInterface) {
+        $this->tasks[] = $taskInterface;
+
         return $this;
     }
 
@@ -43,6 +64,7 @@ class TaskListEvent extends ThemeEvent {
     public function setTotal($total)
     {
         $this->total = $total;
+
         return $this;
     }
 
@@ -51,9 +73,6 @@ class TaskListEvent extends ThemeEvent {
      */
     public function getTotal()
     {
-        return $this->total == 0 ? sizeof($this->tasks) : $this->total;
+        return $this->total == 0 ? count($this->tasks) : $this->total;
     }
-
-
-
 }

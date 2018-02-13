@@ -7,35 +7,30 @@
 
 namespace Avanzu\AdminThemeBundle\EventListener;
 
-
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\Security\Core\User\User;
-use Symfony\Component\Security\Core\User\UserInterface;
 
-class ContextListener {
-
+class ContextListener
+{
     protected $indicator = '^/admin';
     protected $container = null;
 
-    function __construct($container)
+    public function __construct($container)
     {
         $this->container = $container;
     }
 
-
     public function onRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
-        $uri     = $request->getPathInfo();
-        if(!preg_match('!'.$this->indicator.'!', $uri)) {
+        $uri = $request->getPathInfo();
+        if(!preg_match('!' . $this->indicator . '!', $uri)) {
             return;
         }
 
         if(false == ($user = $this->getUser())){
             return;
         }
-
     }
 
     public function getUser()
@@ -57,6 +52,5 @@ class ContextListener {
 
     public function onController(FilterControllerEvent $event)
     {
-
     }
 }

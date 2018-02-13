@@ -1,18 +1,11 @@
 ## The Navbar User Component
 
 ### Routes
-Just like the other theme components, this one requires some route names to work.
+Just like the other theme components, this one requires some route aliases to work. Please refer to the [component overview][1] to learn about the route alias details. 
 
-* `avanzu_admin_profile` which should point to the current user's profile page.
-* `avanzu_admin_logout` which should point to the logout mechanism.
-
-You could use the following route stubs with your `routing.yml`
-```yaml
-avanzu_admin_profile:
-    path: /profile/{userid}/
-avanzu_admin_logout:
-    path: /logout
-```
+#### Required aliases
+* profile
+* logout
 
 ### Data Model
 
@@ -38,6 +31,7 @@ namespace MyAdminBundle\EventListener;
 // ...
 
 use Avanzu\AdminThemeBundle\Event\ShowUserEvent;
+use Avanzu\AdminThemeBundle\Model\NavBarUserLink;
 use MyAdminBundle\Model\UserModel;
 
 class MyShowUserListener {
@@ -48,6 +42,12 @@ class MyShowUserListener {
 
 		$user = $this->getUser();
 		$event->setUser($user);
+		
+		$event->setShowProfileLink(false);
+
+		$event->addLink(new NavBarUserLink('Followers', 'logout'));
+		$event->addLink(new NavBarUserLink('Sales', 'logout'));
+		$event->addLink(new NavBarUserLink('Friends', 'logout', ['id' => 2]));
 
 	}
 
@@ -80,11 +80,17 @@ Finally, you need to attach your new listener to the event system:
 ```yaml
 # Resources/config/services.yml
 parameters:
-	my_admin_bundle.show_user_listener.class: MyAdminBundle\EventListener\MyShowUserListener
+    my_admin_bundle.show_user_listener.class: MyAdminBundle\EventListener\MyShowUserListener
 
 services:
-	my_admin_bundle.show_user_listener:
-		class: %my_admin_bundle.show_user_listener.class%
-		tags:
-			- { name: kernel.event_listener, event: theme.navbar_user, method: onShowUser }
+    my_admin_bundle.show_user_listener:
+        class: %my_admin_bundle.show_user_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: theme.navbar_user, method: onShowUser }
 ```
+
+[Previous (Components)][2] - [Next (Navbar Tasks)][3]
+
+[1]: component_events.md
+[2]: https://github.com/avanzu/AdminThemeBundle/blob/master/Resources/docs/component_events.md
+[3]: https://github.com/avanzu/AdminThemeBundle/blob/master/Resources/docs/navbar_tasks.md

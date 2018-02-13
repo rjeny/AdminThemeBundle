@@ -1,5 +1,5 @@
 {
-    "name"        : "avanzu-admin-theme",
+    "name"        : "AvanzuAdminTheme",
     "version"     : "0.0.2",
     "authors"     : [
         "Marc Bach <mail@avanzu.de>"
@@ -26,11 +26,11 @@
         "marionette"                : "*",
         "pickadate"                 : "*",
         "holderjs"                  : "*",
-        "bootflat"                  : "*",
+        "bootflatv2"                : "*",
         "bootbox"                   : "git://github.com/Sscorpion9991/bootbox.git#master",
         "fontawesome"               : "^4.0.0",
         "ionicons"                  : "*",
         "fullcalendar"              : "*",
-        "adminlte"                  : "~2.3.0"
+        "adminlte"                  : "~2.3"
     }
 }

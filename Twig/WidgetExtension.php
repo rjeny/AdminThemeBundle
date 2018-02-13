@@ -7,25 +7,21 @@
 
 namespace Avanzu\AdminThemeBundle\Twig;
 
-
-use Twig_Environment;
-
-class WidgetExtension extends \Twig_Extension {
-
+class WidgetExtension extends \Twig_Extension
+{
     public function renderWidget() {
-
     }
 
     public function getFunctions()
     {
-        return array(
+        return [
             'widget_box' => new \Twig_SimpleFunction('widget_box',
-                                                     array($this, 'renderWidget'),
-                                                     array(
-                                                         'is_safe' => array('html'),
-                                                         'needs_environment' => true
-                                                     )),
-        );
+                                                     [$this, 'renderWidget'],
+                                                     [
+                                                         'is_safe' => ['html'],
+                                                         'needs_environment' => true,
+                                                     ]),
+        ];
     }
 
     public function getName()

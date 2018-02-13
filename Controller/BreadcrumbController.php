@@ -7,7 +7,6 @@
 
 namespace Avanzu\AdminThemeBundle\Controller;
 
-
 use Avanzu\AdminThemeBundle\Event\SidebarMenuEvent;
 use Avanzu\AdminThemeBundle\Event\ThemeEvents;
 use Avanzu\AdminThemeBundle\Model\MenuItemInterface;
@@ -19,9 +18,8 @@ use Symfony\Component\HttpFoundation\Response;
  * Controller to handle breadcrumb display inside the layout
  *
  */
-class BreadcrumbController extends Controller {
-
-
+class BreadcrumbController extends Controller
+{
     /**
      * Controller Reference action to be called inside the layout.
      *
@@ -36,16 +34,14 @@ class BreadcrumbController extends Controller {
      *
      */
     public function breadcrumbAction(Request $request, $title = '') {
-
         if (!$this->getDispatcher()->hasListeners(ThemeEvents::THEME_BREADCRUMB)) {
             return new Response();
         }
 
-        $active = $this->getDispatcher()->dispatch(ThemeEvents::THEME_BREADCRUMB,new SidebarMenuEvent($request))->getActive();
+        $active = $this->getDispatcher()->dispatch(ThemeEvents::THEME_BREADCRUMB, new SidebarMenuEvent($request))->getActive();
         /** @var $active MenuItemInterface */
-        $list = array();
+        $list = [];
         if($active) {
-
             $list[] = $active;
             while(null !== ($item = $active->getActiveChild())) {
                 $list[] = $item;
@@ -53,13 +49,11 @@ class BreadcrumbController extends Controller {
             }
         }
 
-
-        return $this->render('AvanzuAdminThemeBundle:Breadcrumb:breadcrumb.html.twig', array(
+        return $this->render('AvanzuAdminThemeBundle:Breadcrumb:breadcrumb.html.twig', [
                 'active' => $list,
-                'title'  => $title
-            ));
+                'title' => $title,
+            ]);
     }
-
 
     /**
      * @return EventDispatcher
@@ -68,5 +62,4 @@ class BreadcrumbController extends Controller {
     {
         return $this->get('event_dispatcher');
     }
-
 }

@@ -7,65 +7,53 @@
 
 namespace Avanzu\AdminThemeBundle\Theme;
 
-
-use Assetic\Asset\AssetCollection;
-use Assetic\Asset\AssetReference;
-use Assetic\Factory\AssetFactory;
-use Assetic\Factory\LazyAssetManager;
-use Assetic\Factory\Resource\FileResource;
 use Avanzu\FoundationBundle\Util\DependencyResolverInterface;
-use Symfony\Bundle\AsseticBundle\Config\AsseticResource;
 use Symfony\Component\DependencyInjection\Container;
-use Avanzu\FoundationBundle\Util\DependencyResolver;
 use Symfony\Component\HttpKernel\Config\FileLocator;
 
 class ThemeManager
 {
-
     /** @var  Container */
     protected $container;
 
-    protected $stylesheets = array();
+    protected $stylesheets = [];
 
-    protected $javascripts = array();
+    protected $javascripts = [];
 
-    protected $locations   = array();
+    protected $locations = [];
 
     protected $resolverClass;
 
-    function __construct($container, $resolverClass = null)
+    public function __construct($container, $resolverClass = null)
     {
-        $this->container     = $container;
-        $this->resolverClass = $resolverClass?: 'Avanzu\AdminThemeBundle\Util\DependencyResolver';
+        $this->container = $container;
+        $this->resolverClass = $resolverClass ?: 'Avanzu\AdminThemeBundle\Util\DependencyResolver';
     }
 
-
-
-    public function registerScript($id, $src, $deps = array(), $location = "bottom")
+    public function registerScript($id, $src, $deps = [], $location = 'bottom')
     {
-
         if (!isset($this->javascripts[$id])) {
-            $this->javascripts[$id] = array(
-                'src'      => $src,
-                'deps'     => $deps,
-                'location' => $location
-            );
+            $this->javascripts[$id] = [
+                'src' => $src,
+                'deps' => $deps,
+                'location' => $location,
+            ];
         }
-
     }
 
-    public function registerStyle($id, $src, $deps = array()) {
+    public function registerStyle($id, $src, $deps = []) {
         if(!isset($this->stylesheets[$id])) {
-            $this->stylesheets[$id] = array(
-                'src'      => $src,
-                'deps'     => $deps,
-            );
+            $this->stylesheets[$id] = [
+                'src' => $src,
+                'deps' => $deps,
+            ];
         }
     }
 
     public function getScripts($location = 'bottom') {
+        $unsorted = [];
+        $srcList = [];
 
-        $unsorted = array(); $srcList = array(); $assetList = array();
         foreach($this->javascripts as $id => $scriptDefinition) {
             if($scriptDefinition['location'] == $location) {
                 $unsorted[$id] = $scriptDefinition;
@@ -76,15 +64,17 @@ class ThemeManager
         foreach($queue as $def){
             $srcList[] = $def['src'];
         }
+
         return $srcList;
     }
 
     public function getStyles() {
-        $srcList = array();
+        $srcList = [];
         $queue = $this->getResolver()->register($this->stylesheets)->resolveAll();
         foreach($queue as $def){
             $srcList[] = $def['src'];
         }
+
         return $srcList;
     }
 
@@ -93,7 +83,8 @@ class ThemeManager
      */
     protected function getResolver() {
         $class = $this->resolverClass;
-        return new $class;
+
+        return new $class();
     }
 
     /**
@@ -102,5 +93,4 @@ class ThemeManager
     protected function getLocator() {
         return $this->container->get('file_locator');
     }
-
 }

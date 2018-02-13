@@ -7,20 +7,17 @@
 
 namespace Avanzu\AdminThemeBundle\Command;
 
-
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\FormatterHelper;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Shell\Command;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Process\Process;
 
-class FetchVendorCommand extends ContainerAwareCommand {
-
-
+class FetchVendorCommand extends ContainerAwareCommand
+{
     protected function configure()
     {
         $this
@@ -35,62 +32,23 @@ class FetchVendorCommand extends ContainerAwareCommand {
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $kernel = $this->getContainer()->get('kernel'); /** @var $kernel Kernel */
-        $res    = $kernel->locateResource('@AvanzuAdminThemeBundle/Resources/bower');
+        $res = $kernel->locateResource('@AvanzuAdminThemeBundle/Resources/bower');
         $helper = $this->getHelperSet()->get('formatter'); /** @var $helper FormatterHelper */
-        $bower  = $this->getContainer()->getParameter('avanzu_admin_theme.bower_bin');
+        $bower = $this->getContainer()->getParameter('avanzu_admin_theme.bower_bin');
 
         $action = $input->getOption('update') ? 'update' : 'install';
         $asRoot = $input->getOption('root') ? '--allow-root' : '';
-        $process = new Process($bower.' '.$action. ' '.$asRoot);
+        $process = new Process($bower . ' ' . $action . ' ' . $asRoot);
         $process->setTimeout(600);
-        $output->writeln($helper->formatSection('Executing',$process->getCommandLine(), 'comment'));
+        $output->writeln($helper->formatSection('Executing', $process->getCommandLine(), 'comment'));
         $process->setWorkingDirectory($res);
-        $process->run(function($type, $buffer) use ($output, $helper){
+        $process->run(function ($type, $buffer) use ($output, $helper) {
             if(Process::ERR == $type) {
-                $output->write($helper->formatSection('Error', $buffer, 'error' ));
+                $output->write($helper->formatSection('Error', $buffer, 'error'));
             } else {
-                $output->write($helper->formatSection('Progress', $buffer, 'info' ));
+                $output->write($helper->formatSection('Progress', $buffer, 'info'));
             }
         });
-
-
-
-        // no more pulling/cloning directly from master in favor of a bower installation with specific version constraint
-
-         /*
-
-        $process = new Process('git clone https://github.com/almasaeed2010/AdminLTE.git');
-        $process->setWorkingDirectory(dirname($res).'/public/vendor');
-        // run checkout if no dir present
-        // run update only if update requested
-        $process = null;
-        $adminlte_dir = dirname($res).'/public/vendor/AdminLTE';
-        if($input->getOption('update')) {
-            $process = new Process('git pull');
-            $process->setWorkingDirectory($adminlte_dir);
-        }
-        $output->writeln($helper->formatSection('Executing',$process->getCommandLine(), 'comment'));
-
-        if(!is_dir($adminlte_dir)) {
-            $process = new Process('git clone https://github.com/almasaeed2010/AdminLTE.git');
-            $process->setWorkingDirectory(dirname($adminlte_dir));
-        }
-
-        if ($process) {
-            $output->writeln($helper->formatSection('Executing',$process->getCommandLine(), 'comment'));
-
-            $process->run(function($type, $buffer) use ($output, $helper){
-                if(Process::ERR == $type) {
-                    $output->write($helper->formatSection('Error', $buffer, 'error' ));
-                } else {
-                    $output->write($helper->formatSection('Progress', $buffer, 'info' ));
-                }
-            });
-        }
-
-        */
     }
-
 }
