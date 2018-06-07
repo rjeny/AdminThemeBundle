@@ -29,6 +29,7 @@
         "bootflat"                  : "*",
         "bootbox"                   : "git://github.com/Sscorpion9991/bootbox.git#master",
         "fontawesome"               : "^4.0.0",
+        "ionicons"                  : "*",
         "fullcalendar"              : "*",
         "adminlte"                  : "~2.3.0"
     }
