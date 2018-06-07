@@ -1,6 +1,6 @@
 {
     "name"        : "rjeny-avanzu-admin-thmeme",
-    "version"     : "0.0.2",
+    "version"     : "0.0.3",
     "authors"     : [
         "Marc Bach <mail@avanzu.de>"
     ],
@@ -29,7 +29,7 @@
         "bootflatv2"                : "*",
         "bootbox"                   : "git://github.com/Sscorpion9991/bootbox.git#master",
         "fontawesome"               : "^4.0.0",
-        "ionicons"                  : "*",
+        "ionicons"                  : "4.0.0",
         "fullcalendar"              : "*",
         "adminlte"                  : "~2.3"
     }
