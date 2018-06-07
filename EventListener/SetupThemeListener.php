@@ -40,8 +40,8 @@ class SetupThemeListener {
         $mng->registerStyle('bootstrap-slider', $css.'/bootstrap-slider/slider.css', array('bootstrap'));
         $mng->registerStyle('datatables', $css.'/datatables/dataTables.bootstrap.css', array('bootstrap'));
         $mng->registerStyle('fontawesome', $css.'/font-awesome.css');
-        // $mng->registerStyle('ionicons', $css.'/ionicons.css');
-        $mng->registerStyle('admin-lte', $css.'/AdminLTE.css', array('bootstrap-slider', 'fontawesome','datatables'));
+        $mng->registerStyle('ionicons', $css.'/ionicons.css');
+        $mng->registerStyle('admin-lte', $css.'/AdminLTE.css', array('bootstrap-slider', 'fontawesome', 'ionicons','datatables'));
         $mng->registerStyle('bs-colorpicker', $css.'/colorpicker/bootstrap-colorpicker.css', array('admin-lte'));
         $mng->registerStyle('daterangepicker', $css.'/daterangepicker/daterangepicker-bs3.css', array('admin-lte'));
         $mng->registerStyle('timepicker', $css.'/timepicker/bootstrap-timepicker.css', array('admin-lte'));
